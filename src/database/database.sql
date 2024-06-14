@@ -1,0 +1,17 @@
+CREATE TABLE rooms (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  room_id INTEGER NOT NULL REFERENCES rooms(id)
+);
+
+CREATE TABLE votes (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  room_id INTEGER NOT NULL REFERENCES rooms(id),
+  value INTEGER NOT NULL
+);
